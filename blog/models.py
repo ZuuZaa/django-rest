@@ -6,5 +6,5 @@ class BlogModel(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.title}"
