@@ -48,6 +48,8 @@ def api_detail_blog_view(request, id):
         data = {}
         if operation:
             data['success':'blog post deleted successfuly']
+            return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             data['success':'delete is failed']
-        return Response(data=data)
+            return Response(data=data)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
