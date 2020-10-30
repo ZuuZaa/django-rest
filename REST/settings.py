@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '4ea%ki0lyajy^=s@0w0utp28*lim+u
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = ['*']
-
+LOCALE_PATHS = [ os.path.join(BASE_DIR, 'locale')]
 # Application definition
 
 INSTALLED_APPS = [
@@ -78,16 +78,17 @@ WSGI_APPLICATION = 'REST.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 import dj_database_url
 DEBUG = True
+
 # DATABASES = { 'default' : dj_database_url.config()}
 # DATABASES['default'] = dj_database_url.parse('postgres://ijsldkwkvjabxd:4e37ae6bc7ea6775535b7277a177f206b679f8ff02fbf1a58d62dc8f45cc6536@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dftr3bdads5r5r', conn_max_age=600)
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-
+}
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
