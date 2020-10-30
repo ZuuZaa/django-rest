@@ -78,15 +78,15 @@ WSGI_APPLICATION = 'REST.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 import dj_database_url
 DEBUG = True
-DATABASES = { 'default' : dj_database_url.config()}
-DATABASES['default'] = dj_database_url.parse('postgres://ijsldkwkvjabxd:4e37ae6bc7ea6775535b7277a177f206b679f8ff02fbf1a58d62dc8f45cc6536@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dftr3bdads5r5r', conn_max_age=600)
-# if DEBUG:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
+# DATABASES = { 'default' : dj_database_url.config()}
+# DATABASES['default'] = dj_database_url.parse('postgres://ijsldkwkvjabxd:4e37ae6bc7ea6775535b7277a177f206b679f8ff02fbf1a58d62dc8f45cc6536@ec2-3-208-224-152.compute-1.amazonaws.com:5432/dftr3bdads5r5r', conn_max_age=600)
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
